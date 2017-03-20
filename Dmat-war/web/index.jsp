@@ -149,18 +149,26 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <%--<c:set var="lp" value="${requestScope.lp}"/>--%>
-                            <!--${lp.id}-->
+                            <c:set var="lp" value="${requestScope.lp}"/>
                             <c:forEach items="${requestScope.ls}" var="ls">
                                 <tr>
                                     <td>${ls.id}</td>
                                     <td>${ls.fio}</td>
                                     <td>${ls.idGr.name}</td>
                                     <td>${ls.idTip.tip}</td>
-                                    <%--<c:if test="${lp.nedelya==1 && lp.idSt.id==ls.id}">--%>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <%--</c:if>--%>
+                                    <%--<c:choose>--%>
+                                        <%--<c:when test="${lp.idSt.id==ls.id}">--%>
+                                            <!--<td>
+                                            <%--${lp.propusk}--%>
+                                            </td>-->
+                                            <!--<td><%--${lp.uvProp}--%></td>-->
+                                        <%--</c:when>--%>
+                                        <%--<c:when test="${lp.idSt.id!=ls.id}">--%>
+                                            <td>0</td>
+                                            <td>0</td>
+                                        <%--</c:when>--%>
+
+                                    <%--</c:choose>--%>
                                     <td>1</td>
                                     <td>1</td>
                                     <td>1</td>
@@ -199,11 +207,6 @@
                             </c:forEach>
                         </tbody>
                     </table>
-
-
-                    <c:forEach items="${requestScope.lp}" var="lp">
-                        ${lp.id}<br/>
-                    </c:forEach>
                 </section>
                 <section id="content-tab2">
                     <p> 2 kurs</p>

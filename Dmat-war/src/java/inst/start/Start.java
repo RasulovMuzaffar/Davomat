@@ -6,8 +6,10 @@
 package inst.start;
 
 import inst.beans.SessionBeanLocal;
+import inst.entities.Kurs;
 import inst.entities.Posesh;
 import inst.entities.SprStudent;
+import inst.entities.TableP;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -41,8 +43,24 @@ public class Start extends HttpServlet {
         List<SprStudent> ls = sbl.getSprStudentFindAll();
         request.setAttribute("ls", ls);
         List<Posesh> lp = sbl.getPoseshFindAll();
-        request.setAttribute("lp", lp);
-        System.out.println("" + sbl.getPoseshFindAll().getClass());
+        request.setAttribute("lp", lp.get(0));
+        System.out.println("" + lp.get(0).getIdSt().getFio());
+//        lp.forEach((p) -> {
+//            System.out.println("" + p.getIdSt().getId() + " , " + p.getIdSt().getFio() + " , "
+//                    + p.getIdSt().getIdGr().getName() + " , " + p.getIdSt().getIdTip().getTip() + " , "
+//                    + p.getNedelya() + " , {" + p.getPropusk() + " : " + p.getUvProp() + "} , ");
+//        });
+//        System.out.println("---------------------------------------------");
+//        for (int i = 0; i < ls.size(); i++) {
+//            System.out.println(ls.get(i).getId() + " , " + ls.get(i).getFio() + " , " + ls.get(i).getIdGr().getName()
+//                    + " , " + ls.get(i).getIdTip().getTip());
+//        }
+        List<TableP> l = sbl.getTableP();
+        System.out.println("l--->>> " + l);
+//        for (TableP o : l) {
+////            System.out.println(o.getFio() + " , " + o.getGrName() + " , " + o.getNedelya() + " , " + o.getPropusk() + " , " + o.getUvProp());
+//            System.out.println(o.getFio());
+//        }
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 

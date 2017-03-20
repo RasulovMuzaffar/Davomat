@@ -13,6 +13,7 @@ import inst.entities.SprFacult;
 import inst.entities.SprGruppa;
 import inst.entities.SprStudent;
 import inst.entities.SprTipUch;
+import inst.entities.TableP;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.ejb.SessionContext;
@@ -188,5 +189,14 @@ public class SessionBean implements SessionBeanLocal {
     @Override
     public List<Grafik> getGrafikFindAll() {
         return em.createNamedQuery("Grafik.findAll", Grafik.class).getResultList();
+    }
+
+    @Override
+    public List<TableP> getTableP() {
+//        return em.createNativeQuery("TableP.getAll", TableP.class).getResultList();
+        return em.createNativeQuery("SELECT spr_student.id, spr_student.FIO, "
+                + "spr_gruppa.name, posesh.nedelya, posesh.propusk, posesh.uv_prop FROM posesh "
+                + "INNER JOIN spr_student ON posesh.id_st = spr_student.id "
+                + "INNER JOIN spr_gruppa ON spr_student.id_gr = spr_gruppa.id", TableP.class).getResultList();
     }
 }

@@ -8,6 +8,8 @@
   <persistence-unit name="Dmat-ejbPU2" transaction-type="JTA">
     <jta-data-source>java:/jboss/datasources/mysqlDS</jta-data-source>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
-    <properties/>
+    <properties>
+        <property name="hibernate.enable_lazy_load_no_trans" value="true" />
+    </properties>
   </persistence-unit>
 </persistence>
